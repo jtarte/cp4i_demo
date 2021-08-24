@@ -1,0 +1,24 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: quickstart-cp4i
+spec:
+  license:
+    accept: true
+    license: L-RJON-BXUPZ2
+    use: NonProduction
+  web:
+    enabled: true
+  version: 9.2.2.0-r1
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  queueManager:
+    name: QUICKSTART
+    storage:
+      queueManager:
+        type: ephemeral
