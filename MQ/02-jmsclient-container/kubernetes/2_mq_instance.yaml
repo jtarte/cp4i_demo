@@ -1,0 +1,31 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: mqsc-ini-cp4i
+  labels:
+    version: 0.0.2
+spec:
+  version: 9.2.2.0-r1
+  license:
+    accept: true
+    license: L-RJON-BXUPZ2
+    use: NonProduction
+  web:
+    enabled: true
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  queueManager:
+    name: "MQSCINI"
+    mqsc:
+    - configMap:
+        name: mqsc-ini-example
+        items:
+        - example1.mqsc
+    storage:
+      queueManager:
+        type: ephemeral

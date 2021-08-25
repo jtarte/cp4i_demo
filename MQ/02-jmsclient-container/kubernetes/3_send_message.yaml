@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jmssender
+  namespace: mq
+spec:
+  template:
+    spec:
+      containers:
+      - name: jmssender
+        image: jtarte/jmsclient
+        command: ["java",  "-cp", "jmsclient-1.0-SNAPSHOT.jar:javax.jms-api-2.0.1.jar:com.ibm.mq.allclient-9.2.2.0.jar", "com.ibm.swat.samples.mq.JmsClient", "send", "bonjour tout le monde"]
+        env:
+          - name: MQ_HOST
+            value: mqsc-ini-cp4i-ibm-mq
+          - name: MQ_CHANNEL
+            value: MQ.QS.SVRCONN
+          - name: MQ_QMGR
+            value: MQSCINI
+          - name: MQ_QUEUE
+            value: DEV.QUEUE.1
+          - name: MQ_USER
+            value: app
+          - name: MQ_PASSWORD
+            value: passw0rd
+      restartPolicy: Never
+
+  backoffLimit: 4

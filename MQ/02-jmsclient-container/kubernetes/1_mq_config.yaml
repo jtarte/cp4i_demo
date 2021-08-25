@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mqsc-ini-example
+data:
+  example1.mqsc: |
+    DEFINE QLOCAL('DEV.QUEUE.1') REPLACE
+    DEFINE QLOCAL('DEV.QUEUE.2') REPLACE
+    DEFINE CHANNEL('MQ.QS.SVRCONN') CHLTYPE(SVRCONN) MCAUSER('admin') TRPTYPE(TCP)
+    SET CHLAUTH('MQ.QS.SVRCONN') TYPE(BLOCKUSER) USERLIST('NOBODY') ACTION(ADD)
