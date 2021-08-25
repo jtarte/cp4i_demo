@@ -89,3 +89,10 @@ oc logs <pod_id>
 ```
 
 ![get message](./img/get.png)
+
+## Cleaning
+
+Use the following command to clean the environment 
+```
+oc delete -f ./kubernetes
+```
