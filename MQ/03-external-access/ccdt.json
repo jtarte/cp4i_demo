@@ -1,0 +1,24 @@
+{
+    "channel":
+    [
+        {
+            "name": "APPCHL",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "myqm-ibm-mq-qm-mq.cluster-roks-on-vpc-b327-f54dfdb602b48210069b59bca45066bc-0000.eu-de.containers.appdomain.cloud",
+                        "port": 443
+                    }
+                ],
+                "queueManager": "MYQM"
+            },
+            "transmissionSecurity":
+            {
+                "cipherSpecification": "ECDHE_RSA_AES_128_CBC_SHA256"
+            },
+            "type": "clientConnection"
+        }
+    ]
+}
