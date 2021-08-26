@@ -1,0 +1,43 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: myqm
+spec:
+  license:
+    accept: true
+    license: L-RJON-BXUPZ2
+    use: NonProduction
+  queueManager:
+    name: MYQM
+    mqsc:
+    - configMap:
+        name: myqm-configmap
+        items:
+        - qm1.mqsc
+    storage:
+      queueManager:
+        type: ephemeral
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  version: 9.2.2.0-r1
+  web:
+    enabled: true
+  pki:
+    keys:
+      - name: default
+        secret:
+          secretName: myqm-secret
+          items: 
+          - tls.key
+          - tls.crt
+    trust:
+    - name: client
+      secret:
+        secretName: client-secret
+        items:
+          - client.crt
