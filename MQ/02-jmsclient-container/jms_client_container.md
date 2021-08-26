@@ -2,15 +2,15 @@
 
 This demo show a java-jms application, deployed as container on Openshift, close to the queue manager, interacting whit it (send and receive message).
 
-# Prerequisites
+## Prerequisites
 
 * CP4I installed.
 * CP4I entitlement key configured on the OCP cluster (Cluster or namespace level).
 * `oc` CLI session active.
 
-# Steps
+## Steps
 
-## Build (optional)
+### Build (optional)
 
 You could use the Makefile to build the application. All the java part is managed by mvn
 
@@ -41,7 +41,7 @@ If needed you could push the image on a registry. The latest build is published 
 
 The deployment yaml files, used later, refer this image, on docker hub.
 
-## Deploy the MQ cluster
+### Deploy the MQ cluster
 
 Apply for the MQ configuration and the queue manager.
 ```
@@ -54,7 +54,7 @@ oc get queuemanager
 ```
 The phase should be `Running`.
 
-## Send a message
+### Send a message
 
 Apply the job that puts a message into the queue.
 ```
@@ -72,7 +72,7 @@ oc logs <pod_id>
 
 ![send message](./img/send.png)
 
-## Get the message
+### Get the message
 
 Apply the job that gets  message from the queue.
 ```
