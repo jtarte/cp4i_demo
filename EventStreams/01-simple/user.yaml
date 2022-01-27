@@ -1,0 +1,31 @@
+apiVersion: eventstreams.ibm.com/v1beta1
+kind: KafkaUser
+metadata:
+  labels:
+    app.kubernetes.io/instance: mydev
+    eventstreams.ibm.com/cluster: mydev
+  name: test
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - host: '*'
+        operation: Read
+        resource:
+          name: INBOUND
+          patternType: literal
+          type: topic
+      - host: '*'
+        operation: Write
+        resource:
+          name: INBOUND
+          patternType: literal
+          type: topic
+      - host: '*'
+        operation: Read
+        resource:
+          name: test-starter-consumer
+          patternType: literal
+          type: group
+    type: simple
