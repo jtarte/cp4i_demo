@@ -60,7 +60,7 @@ This demo shows how to configure the certifcate allowing an external access to M
 
 3. Create the MQ instance. 
    ```
-   oc apply -f myqm-config.yaml
+   oc apply -f myqm-instance.yaml
    ```
     Wait Until the `queuemanager` reaches the `Running`phase
   
