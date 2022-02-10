@@ -2,23 +2,23 @@
     "channel":
     [
         {
-            "name": "APPCHL",
+            "name": "QM1CHL",
             "clientConnection":
             {
                 "connection":
                 [
                     {
-                        "host": "<your route to MQ",
+                        "host": "qm1-ibm-mq-qm-mqm.apps.e72gnldv.canadacentral.aroapp.io",
                         "port": 443
                     }
                 ],
-                "queueManager": "MYQM"
+                "queueManager": "QM1"
             },
             "transmissionSecurity":
             {
-                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+              "cipherSpecification": "ANY_TLS12_OR_HIGHER"
             },
             "type": "clientConnection"
         }
-    ]
+   ]
 }
