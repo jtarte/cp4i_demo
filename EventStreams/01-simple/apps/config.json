@@ -1,10 +1,10 @@
 {
-    "bootstrap.servers": <replace with the host of your cluster bootstrap>,
+    "bootstrap.servers": "mydev-kafka-bootstrap-cp4i.apps.tokyo.edu.ihost.com:443",
     "security.protocol": "SASL_SSL",
     "sasl.mechanisms":"SCRAM-SHA-512",
     "sasl.username":"test",
-    "sasl.password":<replace with the user password>,
-    "ssl.ca.location":<replace with the location of the ca.crt file>,
+    "sasl.password":"p3EU9yiUwVL6",
+    "ssl.ca.location":"/Users/jtarte/dev/cp4i_demo/ca.crt",
     "api.version.request": true,
     "broker.version.fallback": "0.10.4.0",
     "log.connection.close" : false,

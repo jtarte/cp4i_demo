@@ -1,8 +1,9 @@
 from confluent_kafka import Producer
-import json
+import json, sys
 
+argv = sys.argv[1:]
 
-f = open("config.json")
+f = open(argv[0])
 
 driver_options = json.load(f)
 

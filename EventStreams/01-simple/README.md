@@ -42,14 +42,16 @@ update the file apps/config.json with the collectected values
 
 ## Launch apps
 
+From the `apps` directory
+
 Launch the consumer 
 ```
-python ./apps/consumer.py
+python3 ./apps/consumer.py
 ```
 
 In a second terminal windows, launch the producer
 ```
-python ./apps/prodcuer.py
+python3 ./apps/prodcuer.py
 ```
 
 you should see the producer activity and the meesage retreived by the consumer. 
