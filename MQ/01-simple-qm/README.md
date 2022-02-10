@@ -49,8 +49,8 @@ This demo deploys a simple Queue Manager and uses MQ tools that are embeded into
    ```
 6. Define QM configuration with a local queue and and application channel.
    ```
-   DEFINE QLOCAL(APP_Q)
-   DEFINE CHANNEL(APP_CH) CHLTYPE(SVRCONN)
+   DEFINE QLOCAL(APP_Q) REPLACE
+   DEFINE CHANNEL(APP_CH) CHLTYPE(SVRCONN) REPLACE
    SET CHLAUTH(APP_CH) TYPE(BLOCKUSER) USERLIST('nobody')
    ``` 
 7. Exit the MQSC session but stay in the terminal session of the container.
@@ -58,7 +58,7 @@ This demo deploys a simple Queue Manager and uses MQ tools that are embeded into
 
 8. Define the MQSERVER variable with channel name / TCP / hostname (service name of the queue manager) and the MQ port.
    ```
-   export MQSERVER='<channel name>/TCP/<hostname>(1414)``
+   export MQSERVER='<channel name>/TCP/<hostname>(1414)'`
    ``` 
 9. Send a message to a queue on the queue manager.
    ``` 
