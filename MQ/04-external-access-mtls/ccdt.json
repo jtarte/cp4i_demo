@@ -8,7 +8,7 @@
                 "connection":
                 [
                     {
-                        "host": "myqm-ibm-mq-qm-mq.cluster-roks-on-vpc-b327-f54dfdb602b48210069b59bca45066bc-0000.eu-de.containers.appdomain.cloud",
+                        "host": "<your host from route>",
                         "port": 443
                     }
                 ],

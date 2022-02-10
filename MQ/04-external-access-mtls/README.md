@@ -40,7 +40,7 @@ This demo shows how to configure the certifcates (server and client) allowing an
     runmqakm -cert -add -db qmkey.kdb -label myqmcert -file myqm.crt -format ascii -stashed
     ```
 
-    To check the content of th ekey databse, you could use the following commands:
+    To check the content of the key databse, you could use the following commands:
     ```
     runmqakm -cert -list -db qmkey.kdb -stashed
     runmqakm -cert -details -db qmkey.kdb -stashed -label myqmcert
@@ -82,7 +82,7 @@ This demo shows how to configure the certifcates (server and client) allowing an
 
 3. Create the MQ instance. 
    ```
-   oc apply -f myqm-config.yaml
+   oc apply -f myqm-instance.yaml
    ```
     Wait Until the `queuemanager` reaches the `Running`phase
   
@@ -139,8 +139,8 @@ This demo shows how to configure the certifcates (server and client) allowing an
 
 4. Send messages to the queue.
     ```
-    echo "Test message 1" | amqsputc APPQ MYQM
-    echo "Test message 2" | amqsputc APPQ MYQM
+        echo "Test message 1" | amqsputc APPQ MYQM
+        echo "Test message 2" | amqsputc APPQ MYQM
     ```
 
 5. Get messages from the queue.
