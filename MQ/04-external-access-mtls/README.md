@@ -89,7 +89,7 @@ This demo shows how to configure the certifcates (server and client) allowing an
 
 4. Create the required route.
     
-    MQ Clients use Server Name Indication (SNI) to connect to queue managers on OpenShift. This requires a route with a host name in the form `<lowercase channel name>.chl.mq.ibm.com`.
+    MQ Clients use Server Name Indication (SNI) to connect to queue managers on OpenShift. This requires a route with a host name in the form `<lowercase channel name>.chl.mq.ibm.com`. This requires a route with a host name in the form `<lowercase channel name>.chl.mq.ibm.com`. This is true with old version of the client. With recent version (<9.2.1) of the client, if the `OUTBOUNDSNI`is set to hostname, this route to channel is not needed. 
 
     ```
     oc apply -f myqm-route.yaml
