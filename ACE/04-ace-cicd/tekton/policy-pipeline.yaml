@@ -1,0 +1,45 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: policy-pipeline
+spec:
+  workspaces:
+    - name: workspace
+  params:
+    - name: git_url
+      description: Git url
+    - name: branch
+      description: Revision to use
+    - name: project_name
+    - name: bar_file
+  tasks:
+    - name: checkout
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      params:
+        - name: url
+          value: $(params.git_url)
+        - name: revision
+          value: $(params.branch)
+        - name: deleteExisting
+          value: 'true'
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: package
+      taskRef:
+        name: policy-package-task
+        kind: Task
+      runAfter:
+        - checkout
+      params:
+        - name: project_path
+          value: ACE/04-ace-cicd
+        - name: project_name
+          value: $(params.project_name)
+        - name: bar_file
+          value: $(params.bar_file)
+      workspaces:
+        - name: source
+          workspace: workspace

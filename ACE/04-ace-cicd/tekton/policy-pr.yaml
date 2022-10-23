@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: policy-pr-
+  labels:
+    tekton.dev/pipeline: policy-pipeline
+spec:
+  pipelineRef:
+    name: policy-pipeline
+  serviceAccountName: ace-pipeline
+  params: 
+    - name: git_url
+      value: https://github.com/jtarte/cp4i_demo
+    - name: branch
+      value: main
+    - name: project_name
+      value: MQPolicyProject
+    - name: bar_file
+      value: mqpolicy.bar
+  workspaces:
+    - name: workspace 
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
+  
