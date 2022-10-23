@@ -1,4 +1,4 @@
-FROM cp.icr.io/cp/appc/cp.icr.io/cp/appc/ace-server-prod:12.0.5.0-r3-20220830-142002@sha256:084cbd25b8af37c841f0b8d1ffc401e2805018baeb4ef6997a2ce9c1c97a1441
+FROM cp.icr.io/cp/appc/ace-server-prod@sha256:084cbd25b8af37c841f0b8d1ffc401e2805018baeb4ef6997a2ce9c1c97a1441
 
 LABEL "ACE.version"="12.0.5.0-r3"
 
