@@ -43,3 +43,19 @@ spec:
       workspaces:
         - name: source
           workspace: workspace
+    - name: configure
+      taskRef:
+        name: policy-configure-task
+        kind: Task
+      runAfter:
+        - package
+      params:
+        - name: project_path
+          value: ACE/04-ace-cicd
+        - name: bar_file
+          value: $(params.bar_file)
+        - name : output_file 
+          value: mq_policy.yaml
+      workspaces:
+        - name: source
+          workspace: workspace
