@@ -2,6 +2,8 @@ apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
   name: acemq-sample
+  labels:
+    version: 'IS_VERSION'
 spec:
   enableMetrics: true
   license:
