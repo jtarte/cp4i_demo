@@ -1,0 +1,26 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: myqm-configmap
+data:
+  qm1.mqsc: >
+    * Application Queue
+    DEFINE QLOCAL('APPQ') REPLACE
+    DEFINE QLOCAL('TEST_IN') REPLACE
+    DEFINE QLOCAL('TEST_OUT') REPLACE
+
+    DEFINE CHANNEL(SVR.CONN) CHLTYPE(SVRCONN) TRPTYPE(TCP)
+    DESCR('Server-connection to Client_2')  REPLACE
+
+    DEFINE CHANNEL(APPCHL) CHLTYPE(SVRCONN) TRPTYPE(TCP) SSLCAUTH(OPTIONAL)
+    SSLCIPH('ANY_TLS12_OR_HIGHER')  REPLACE
+    SET CHLAUTH(APPCHL) TYPE(BLOCKUSER) USERLIST('nobody') ACTION(ADD)
+
+    ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS)
+    CHCKCLNT(NONE) CHCKLOCL(NONE) 
+
+    set chlauth(system.*) type(addressmap) address(*) action(remove)
+    set chlauth(*) type(blockuser) userlist(*mqadmin) action(remove)
+    set chlauth(system.def.svrconn) type(addressmap) address(*) mcauser (admin) action(add)
+
+    REFRESH SECURITY
