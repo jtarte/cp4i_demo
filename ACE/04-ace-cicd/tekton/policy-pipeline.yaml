@@ -12,6 +12,10 @@ spec:
       description: Revision to use
     - name: project_name
     - name: bar_file
+    - name: project_path
+    - name: policy_file
+    - name: policy_name
+    - name: policy_version
   tasks:
     - name: checkout
       taskRef:
@@ -29,13 +33,13 @@ spec:
           workspace: workspace
     - name: package
       taskRef:
-        name: policy-package-task
+        name: bar-package-task
         kind: Task
       runAfter:
         - checkout
       params:
         - name: project_path
-          value: ACE/04-ace-cicd
+          value: $(params.project_path)
         - name: project_name
           value: $(params.project_name)
         - name: bar_file
@@ -51,11 +55,31 @@ spec:
         - package
       params:
         - name: project_path
-          value: ACE/04-ace-cicd
+          value: $(params.project_path)
         - name: bar_file
           value: $(params.bar_file)
         - name : output_file 
-          value: mq_policy.yaml
+          value: $(params.policy_file)
+        - name: policy_name
+          value: $(params.policy_name)
+        - name: policy_version
+          value: $(params.policy_version)
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: git-upload
+      taskRef:
+        name: git-upload
+        kind: Task
+      runAfter:
+        - configure
+      params:
+        - name: revision
+          value: $(params.branch)
+        - name: project_path
+          value: $(params.project_path)
+        - name : target_file 
+          value: $(params.policy_file)
       workspaces:
         - name: source
           workspace: workspace

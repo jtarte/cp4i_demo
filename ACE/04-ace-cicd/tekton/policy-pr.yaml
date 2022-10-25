@@ -17,6 +17,14 @@ spec:
       value: MQPolicyProject
     - name: bar_file
       value: mqpolicy.bar
+    - name: project_path
+      value: ACE/04-ace-cicd
+    - name: policy_file
+      value: gitops/ace/mq_policy.yaml
+    - name: policy_name
+      value: mq-policy
+    - name: policy_version
+      value: 1.1
   workspaces:
     - name: workspace 
       volumeClaimTemplate:

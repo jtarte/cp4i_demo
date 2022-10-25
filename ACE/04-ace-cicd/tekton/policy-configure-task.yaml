@@ -12,17 +12,20 @@ spec:
       type: string 
     - name: output_file
       type: string
+    - name: policy_name
+      type: string
+    - name: policy_version
   steps:
    - name: policy-package
-     image: cp.icr.io/cp/appc/ace-server-prod:12.0.5.0-r3-20220830-142002@sha256:084cbd25b8af37c841f0b8d1ffc401e2805018baeb4ef6997a2ce9c1c97a1441
+     image: registry.access.redhat.com/ubi8/ubi:latest
      workingDir: $(workspaces.source.path)/$(params.project_path)
      script: |
         #!/bin/sh
         
-        export ENCODED_BAR=$(cat $(params.bar_file) | base64)
-        echo $ENCODED_BAR
+        export ENCODED_BAR=$(base64 -i $(params.bar_file) -w 0)
 
-        sed 's|CONTENT_BAR|$ENCODED_BAR|g' templates/mq-policy.yaml > $(params.output_file)
-
+        sed -e "s|CONTENT_BAR|$ENCODED_BAR|g" templates/mq-policy.yaml > $(params.output_file)
+        sed -i -e "s|POLICY_NAME|$(params.policy_name)|g" $(params.output_file)
+        sed -i -e "s|POLICY_VERSION|$(params.policy_version)|g" $(params.output_file)
 
         cat $(params.output_file)
