@@ -3,7 +3,7 @@ kind: Configuration
 metadata:
   name: POLICY_NAME
   labels:
-    version: POLICY_VERSION
+    version: 'POLICY_VERSION'
 spec:
   contents: CONTENT_BAR
   type: policyproject
