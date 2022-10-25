@@ -2,6 +2,8 @@ apiVersion: appconnect.ibm.com/v1beta1
 kind: Configuration
 metadata:
   name: POLICY_NAME
+  labels:
+    version: POLICY_VERSION
 spec:
   contents: CONTENT_BAR
   type: policyproject
