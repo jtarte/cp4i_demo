@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-upload
+spec:
+  workspaces:
+    - name: source
+  params:
+    - name: revision
+      description: "branch of the git to be updated" 
+      type: string
+    - name: target_file
+      description: "the name of the deployment file to be updated"
+      type: string
+    - name: project_path
+      type: string 
+ 
+  steps:
+   - name: push-changes-gitops
+     image: alpine/git:v2.26.2
+     workingDir: $(workspaces.source.path)
+     script: |
+        #!/bin/sh
+        set -e
+        git config --global user.email "jerome.tarte@fr.ibm.com"
+        git config --global user.name "jtarte"
+        
+        git add $(params.project_path)/$(params.target_file)
+        git commit -m "[tekton] updating configuration deployment"
+        git push origin HEAD:$(params.revision)
