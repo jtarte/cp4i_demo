@@ -4,7 +4,7 @@ LABEL "ACE.version"="12.0.5.0-r3"
 
 
 USER root
-COPY *.bar /home/aceuser/initial-config/bars/
+COPY ACE/04-ace-cicd/mqsample.bar /home/aceuser/initial-config/bars/
 RUN  chmod -R ugo+rwx /home/aceuser
 
 USER 1000
