@@ -1,0 +1,33 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name: acemq-sample
+spec:
+  enableMetrics: true
+  license:
+    accept: true
+    license: L-APEH-C79J9U
+    use: CloudPakForIntegrationNonProduction
+  pod:
+    containers:
+      runtime:
+        image: IMAGE_NAME
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 300m
+            memory: 350Mi
+          requests:
+            cpu: 300m
+            memory: 300Mi
+  adminServerSecure: true
+  router:
+    timeout: 120s
+  designerFlowsOperationMode: disabled
+  createDashboardUsers: true
+  service:
+    endpointType: http
+  version: 12.0.5.0-r3
+  replicas: 1
+  configurations:
+    - mq-policy
