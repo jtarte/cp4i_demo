@@ -4,6 +4,7 @@ metadata:
   name: acemq-sample
   labels:
     version: 'IS_VERSION'
+    generated-date: 'GENERATED_DATE'
 spec:
   enableMetrics: true
   license:

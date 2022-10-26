@@ -4,6 +4,7 @@ metadata:
   name: POLICY_NAME
   labels:
     version: 'POLICY_VERSION'
+    generated-date: 'GENERATED_DATE'
 spec:
   contents: CONTENT_BAR
   type: policyproject
