@@ -1,0 +1,37 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: app-pr-
+  labels:
+    tekton.dev/pipeline: policy-pipeline
+spec:
+  pipelineRef:
+    name: app-pipeline
+  serviceAccountName: ace-pipeline
+  params: 
+    - name: git_url
+      value: https://github.com/jtarte/cp4i_demo
+    - name: branch
+      value: main
+    - name: project_name
+      value: MQSample
+    - name: bar_file
+      value: mqsample.bar
+    - name: target_image
+      value: docker.io/jtarte/mqsample:1.0
+    - name: project_path
+      value: ACE/04-ace-cicd
+    - name: ace_deployment_file
+      value: gitops/ace/ace-instance.yaml
+    - name: app_version
+      value: '1.1'
+  workspaces:
+    - name: workspace 
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
+  
