@@ -1,33 +1,28 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: policy-configure-task
+  name: app-configure-task
 spec:
   workspaces:
     - name: source
   params:
-    - name: bar_file
-      type: string 
     - name: project_path
       type: string 
     - name: output_file
       type: string
-    - name: policy_name
+    - name: image
       type: string
-    - name: policy_version
+    - name: app_version
+      type: string
   steps:
    - name: policy-package
      image: registry.access.redhat.com/ubi8/ubi:latest
      workingDir: $(workspaces.source.path)/$(params.project_path)
      script: |
         #!/bin/sh
-        
-        export ENCODED_BAR=$(base64 -i $(params.bar_file) -w 0)
         export CURRENT_DATE=$(date | sed 's| |_|g'| sed 's|:|_|g')
-       
-        sed -e "s|CONTENT_BAR|$ENCODED_BAR|g" templates/mq-policy.yaml > $(params.output_file)
-        sed -i -e "s|POLICY_NAME|$(params.policy_name)|g" $(params.output_file)
-        sed -i -e "s|POLICY_VERSION|$(params.policy_version)|g" $(params.output_file)
+        sed -e "s|IMAGE_NAME|$(params.image)|g" templates/ace-instance.yaml > $(params.output_file)
+        sed -i -e "s|IS_VERSION|$(params.app_version)|g" $(params.output_file)
         sed -i -e "s|GENERATED_DATE|$CURRENT_DATE|g" $(params.output_file)
-       
+        
         cat $(params.output_file)

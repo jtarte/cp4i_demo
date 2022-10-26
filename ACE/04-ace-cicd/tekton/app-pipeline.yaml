@@ -1,0 +1,97 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: app-pipeline
+spec:
+  workspaces:
+    - name: workspace
+  params:
+    - name: git_url
+      description: Git url
+    - name: branch
+      description: Revision to use
+    - name: project_name
+    - name: bar_file
+    - name: target_image
+    - name: project_path
+    - name: ace_deployment_file
+    - name: app_version
+  tasks:
+    - name: checkout
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      params:
+        - name: url
+          value: $(params.git_url)
+        - name: revision
+          value: $(params.branch)
+        - name: deleteExisting
+          value: 'true'
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: package
+      taskRef:
+        name: bar-package-task
+        kind: Task
+      runAfter:
+        - checkout
+      params:
+        - name: project_path
+          value: $(params.project_path)
+        - name: project_name
+          value: $(params.project_name)
+        - name: bar_file
+          value: $(params.bar_file)
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: build
+      runAfter:
+        - package
+      taskRef:
+        name: buildah
+        kind: ClusterTask
+      params:
+        - name: IMAGE
+          value: $(params.target_image)
+        - name: DOCKERFILE
+          value: $(params.project_path)/Dockerfile
+      workspaces:
+       - name: source
+         workspace: workspace
+    - name: configure
+      taskRef:
+        name: app-configure-task
+        kind: Task
+      runAfter:
+        - build
+      params:
+        - name: project_path
+          value: $(params.project_path)
+        - name : output_file 
+          value: $(params.ace_deployment_file)
+        - name: image
+          value: $(params.target_image)
+        - name: app_version
+          value: $(params.app_version)
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: git-upload
+      taskRef:
+        name: git-upload
+        kind: Task
+      runAfter:
+        - configure
+      params:
+        - name: revision
+          value: $(params.branch)
+        - name: project_path
+          value: $(params.project_path)
+        - name : target_file 
+          value: $(params.ace_deployment_file)
+      workspaces:
+        - name: source
+          workspace: workspace
