@@ -35,7 +35,7 @@ Only the certificate of QM1 need to be provided to QM2.
 
 The file [qm2-mqsc.yaml](./qm2/qm2-mqsc.yaml) gives a sample config for the Queue Manager.
 
-![qm2-mqsc.yaml](./img/qm2_config.yaml) 
+![qm2-mqsc.yaml](./img/qm2_config.png) 
 
 The important point here is th definition of the receiver channel
 ```
