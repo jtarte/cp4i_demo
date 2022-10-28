@@ -3,7 +3,8 @@ kind: IntegrationServer
 metadata:
   name: acemq-sample
   labels:
-    version: '1.1'
+    version: '1.2'
+    generated-date: 'Thu_Oct_27_08_45_40_UTC_2022'
 spec:
   enableMetrics: true
   license:
@@ -13,7 +14,7 @@ spec:
   pod:
     containers:
       runtime:
-        image: docker.io/jtarte/mqsample:1.0
+        image: docker.io/jtarte/mqsample:1.2
         imagePullPolicy: Always
         resources:
           limits:
