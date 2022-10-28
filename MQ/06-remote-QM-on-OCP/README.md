@@ -37,7 +37,7 @@ The file [qm2-mqsc.yaml](./qm2/qm2-mqsc.yaml) gives a sample config for the Queu
 
 ![qm2-mqsc.yaml](./img/qm2_config.png) 
 
-The important point here is th definition of the receiver channel
+The important point here is the definition of the receiver channel
 ```
 DEFINE CHANNEL('QM1.QM2') CHLTYPE (RCVR) TRPTYPE(TCP) SSLCIPH('ANY_TLS12_OR_HIGHER') SSLCAUTH(REQUIRED) MCAUSER('app') REPLACE
 ```
@@ -54,28 +54,28 @@ oc apply -f ./qm2/qm2.yaml
 
 ## OutboundSNI : CHANNEL or HOSTNAME ?
 
-On the client side (in our case, the sender), this parameter define if the encoded channel name will be sent during the establishment of the connection. 
+On the client side (in our case, the QM sender), the parameter `OutboundSNI` defines if the encoded channel name will be sent during the establishment of the connection. 
 
-By default the value is CHANNEL. So to allow the communication to be established, you define a route on the receiver side. 
+By default the value is CHANNEL. So to allow the communication to be established, you must define a route on the receiver side. 
 ![route](./img/route.png)
 
 ```
 oc apply -f ./qm2/qm1.qm2.channel.route.yaml
 ```
-With this option, you have to configure the QM receiver to worker with channel name on the route.
+With this option, you configure the QM receiver to worker with channel name on the route.
 
-But with latest MQ version, you have the possibility to configure the client to work with the hostname rather than the channel. If this case, you have to set up the `OutboundSNI` parameter to HOSTNAME.
+But with latest MQ version (>=9.1.2), you have the possibility to configure the client to work with the hostname rather than the channel. If this case, you have to set up the `OutboundSNI` parameter to HOSTNAME.
 To enable that, you have to set the parameter inside the ini file of the client (in our case, the qm1 Queue Manager).
 ![qm.ini](./img/qm.ini.png)
 
-in our exampel, as the qm1 is running as container, don't forget to provide the ini file at the startup. You may have to adjust the docker run command.  
+In our example, as the qm1 is running as container, don't forget to provide the ini file at startup time. You may have to adjust the docker run command.  
 
 
 ## Create the QM1 Queue Manager
 
-For the demo purpose, I'm using a MQ instance ruuning in a container.
+For the demo purpose, I'm using a MQ instance running in a container.
 
-The [qm1.mqsc](./qm1/qm1.mqsc) provide a sample configuation.
+The [qm1.mqsc](./qm1/qm1.mqsc) provides a sample configuation.
 It defines remote queue, transit queue used by remote queues and a sender channel pointing to the remote QM (here QM2 deployed on OpenShift)
 ![qm1 config](./img/qm1_config.png)
 
