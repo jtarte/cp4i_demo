@@ -6,6 +6,8 @@ This demo deploys a simple Queue Manager and uses MQ tools that are embeded into
 * send message. 
 * retreive message. 
 
+_Remark: the queue manager configuration, done during this demo, is made by using mqsc command on the live container. It is not the recommanded way to proceed. It is better to work with a ConfigMap. But, for the purpose of this demo, and its simplicity, mqsc commands are used. Usage of a ConfigMap will be covered in other demos._
+
 
 ## Prerequisites
 
@@ -39,7 +41,7 @@ This demo deploys a simple Queue Manager and uses MQ tools that are embeded into
    ```
 4. Start a terminal session on the Queue Manager pod.
    ```
-   oc exex -it <pod_name> -- /bin/bash
+   oc exec -it <pod_name> -- /bin/bash
    ```
    ![terminal session](./img/terminal_session.png)
 
