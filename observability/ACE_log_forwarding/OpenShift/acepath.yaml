@@ -1,0 +1,25 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: Configuration
+metadata:
+  creationTimestamp: '2023-01-10T06:34:18Z'
+  generation: 1
+  managedFields:
+    - apiVersion: appconnect.ibm.com/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:data': {}
+          'f:type': {}
+      manager: Mozilla
+      operation: Update
+      time: '2023-01-10T06:34:18Z'
+  name: logpath
+  namespace: log-poc
+  resourceVersion: '3673044'
+  uid: 0bf6d467-08f0-431a-a26b-e5da7466126e
+spec:
+  contents: >-
+    RW52aXJvbm1lbnRWYXJpYWJsZXM6CiAgQ0xBU1NQQVRIOiAnL2hvbWUvYWNldXNlci9jb25maWc6L29wdC9pYm0vYWNlLTEyL3NlcnZlci9tZXNzYWdlczovb3B0L2libS9hY2UtMTIvY29tbW9uL2NsYXNzZXM6L29wdC9pYm0vYWNlLTEyL3NlcnZlci9jbGFzc2VzOi9vcHQvaWJtL2FjZS0xMi9jb21tb24vY2xhc3Nlcy9JbnRlZ3JhdGlvbkFQSS5qYXI6L29wdC9pYm0vYWNlLTEyL3NlcnZlci9jbGFzc2VzL2Jyb2tlcnV0aWwuamFyOi92YXIvbXFzaS9jb21tb24vd3NycicK
+  type: serverconf
+  version: 12.0.6.0-r2-lts

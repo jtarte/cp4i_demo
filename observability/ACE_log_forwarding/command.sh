@@ -1,0 +1,1 @@
+docker run -e LICENSE=accept -p 7600:7600 -p 7800:7800 -p 7843:7943 -v /Users/jtarte/dev/clarins/log-poc/logger.xml:/home/aceuser/config/logger.xml -v /Users/jtarte/dev/clarins/loc-poc/server.conf.yaml:/home/aceuser/ace-server/overrides/server.conf.yaml --name helloworld --rm helloworld

@@ -1,0 +1,3 @@
+
+EnvironmentVariables:
+  CLASSPATH: '/home/aceuser/config:/opt/ibm/ace-12/server/messages:/opt/ibm/ace-12/common/classes:/opt/ibm/ace-12/server/classes:/opt/ibm/ace-12/common/classes/IntegrationAPI.jar:/opt/ibm/ace-12/server/classes/brokerutil.jar:/var/mqsi/common/wsrr'

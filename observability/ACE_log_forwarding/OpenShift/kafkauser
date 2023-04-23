@@ -1,0 +1,38 @@
+piVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  creationTimestamp: '2023-01-11T11:47:15Z'
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: light-poc2
+    eventstreams.ibm.com/cluster: light-poc2
+spec:
+  authentication:
+    type: tls
+  authorization:
+    acls:
+      - host: '*'
+        operation: Read
+        resource:
+          name: logpoc
+          patternType: literal
+          type: topic
+      - host: '*'
+        operation: Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - host: '*'
+        operation: Write
+        resource:
+          name: logpoc
+          patternType: literal
+          type: topic
+      - host: '*'
+        operation: Read
+        resource:
+          name: '*'
+          patternType: literal
+          type: group
+    type: simple

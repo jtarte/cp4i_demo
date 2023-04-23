@@ -1,0 +1,34 @@
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  inputs:
+    - application:
+        selector:
+          matchLabels:
+            appconnect.ibm.com/kind: IntegrationServer
+      name: ace-app
+  outputs:
+    - name: kafka
+      type: kafka
+      url: 'https://light-poc2-kafka-bootstrap.log-poc.svc.cluster.local:9092/logpoc'
+    - name: kafka-tls
+      secret:
+        name: testtls
+      type: kafka
+      url: 'tls://light-poc2-kafka-bootstrap.log-poc.svc.cluster.local:9093/logpoc'
+  pipelines:
+    - inputRefs:
+        - ace-app
+      name: forward-to-kafka
+      outputRefs:
+        - kafka-tls
+    - inputRefs:
+        - application
+        - audit
+        - infrastructure
+      name: enable-default-log-store
+      outputRefs:
+        - default

@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: log-config
+  namespace: log-poc
+data:
+  logger.xml: >-
+    <?xml version="1.0" encoding="UTF-8"?>
+
+    <Configuration  monitorInterval="60" strict="false"
+    packages="com.ibm.log4j.filter">
+      <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+          <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+          <ThresholdFilter level="INFO"/>
+        </Console>
+      </Appenders>
+      <Loggers>
+        <Logger name="default" level="INFO">
+          <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="FATAL">
+        </Root>
+      </Loggers>
+    </Configuration>
