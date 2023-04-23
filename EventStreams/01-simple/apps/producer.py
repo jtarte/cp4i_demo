@@ -29,7 +29,7 @@ for i in range(100):
     # Asynchronously produce a message, the delivery report callback
     # will be triggered from poll() above, or flush() below, when the message has
     # been successfully delivered or failed permanently.
-    p.produce('INBOUND', json.dumps(message).encode('utf-8'), callback=delivery_report)
+    p.produce('inbound', json.dumps(message).encode('utf-8'), callback=delivery_report)
 
 # Wait for any outstanding messages to be delivered and delivery report
 # callbacks to be triggered.

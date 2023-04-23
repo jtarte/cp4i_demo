@@ -1,0 +1,24 @@
+{
+    "channel":
+    [
+        {
+            "name": "APPCHL",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "myqm-ibm-mq-qm-cp4i.apps.jt-ocp46.cp.fyre.ibm.com",
+                        "port": 443
+                    }
+                ],
+                "queueManager": "MYQM"
+            },
+            "transmissionSecurity":
+            {
+                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+            },
+            "type": "clientConnection"
+        }
+    ]
+}

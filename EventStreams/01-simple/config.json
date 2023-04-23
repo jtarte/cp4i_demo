@@ -1,0 +1,13 @@
+{
+    "bootstrap.servers": "mydev-kafka-bootstrap-cp4i.cluster-roks-on-vpc-4c2e-f54dfdb602b48210069b59bca45066bc-0000.eu-de.containers.appdomain.cloud:443",
+    "security.protocol": "SASL_SSL",
+    "sasl.mechanisms":"SCRAM-SHA-512",
+    "sasl.username":"test",
+    "sasl.password":"eyKInr8TDEEP",
+    "ssl.ca.location":"/Users/jtarte/dev/cp4i_demo/EventStreams/01-simple/ca.crt",
+    "api.version.request": true,
+    "broker.version.fallback": "0.10.4.0",
+    "log.connection.close" : false,
+    "group.id": "test-starter-consumer"
+
+}
